@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-test-md" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-应该从API15还是14开始支持-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/10/24/test-md/" class="article-date">
-  <time datetime="2020-10-24T02:22:50.000Z" itemprop="datePublished">2020-10-24</time>
+    <a href="/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/" class="article-date">
+  <time datetime="2020-10-24T02:43:07.000Z" itemprop="datePublished">2020-10-24</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/24/test-md/">test.md</a>
+      <a class="article-title" href="/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/">应该从API15还是14开始支持.md</a>
     </h1>
   
 
@@ -86,11 +86,51 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>之前在 <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903542130475022">掘金</a> 发布过, 重新折腾了加 github page, 备份一份在这里</p>
+</blockquote>
+<blockquote>
+<p>之前做了个库, 用户集成的时候问了句: 我们APP是从 <code>Android 4.0.0</code> 开始支持的, 你们能不能把 <code>minSdkVersion</code> 降到 <code>14</code> (库设定是 <code>15</code> , 对应: <code>Android 4.0.3</code> )?  这是问题的由来,闲着没事, 就来稍微钻一下牛角尖,研究看看</p>
+</blockquote>
+<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minSdkVersion15_or_14.png?raw=true" alt="甩个大纲先"></p>
+<h2 id="1-官方推荐的最低版本支持"><a href="#1-官方推荐的最低版本支持" class="headerlink" title="1. 官方推荐的最低版本支持"></a>1. 官方推荐的最低版本支持</h2><p>当初做库的时候, <code>Android Studio</code>(简称 <code>AS</code> )还是推荐的 <code>API 15</code> , 现在(AS 3.0)已经换成了 <code>API 18</code> :</p>
+<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_default.png?raw=true" alt="AS3.0_default.png"></p>
+<p>不过看上面写的数据, <code>API 18</code> 大概只覆盖了 <code>91.4%</code> ,估计应该很多厂商不愿意吧, 漏掉了很多设备, 那不同API版本的覆盖率是多少呢? <code>AS</code> 也给出了自己的统计:</p>
+<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_distribution.png?raw=true" alt="Distribution.png"></p>
+<p>不过这上面的信息使用  <code>API 15</code> 代表  <code>Android 4.0</code> , 没有细分 <code>4.0.0 ~ 4.0.3</code> , 可能谷歌自己觉得没必要了吧, 不过我们依然可以看出一些信息: <br><br>若是从 <code>API 16</code> 开始支持的话,至少能覆盖 <code>99.2%</code> 以上的设备了;</p>
+<h2 id="2-各版本统计详情信息"><a href="#2-各版本统计详情信息" class="headerlink" title="2. 各版本统计详情信息"></a>2. 各版本统计详情信息</h2><p>通常我们设定 <code>minSdkVersion</code> 是看版本分布情况的,  既然 <code>AS</code> 没法提供更细分版本的分布数据,那我们就只能找找其他统计数据了:</p>
+<h3 id="1-谷歌统计数据"><a href="#1-谷歌统计数据" class="headerlink" title="1. 谷歌统计数据"></a>1. <a target="_blank" rel="noopener" href="https://developer.android.com/about/dashboards/index.html">谷歌统计数据</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/google_distribution.png?raw=true" alt="google_analysis_version_distribution"></p>
+<h3 id="2-腾讯移动分析"><a href="#2-腾讯移动分析" class="headerlink" title="2. 腾讯移动分析"></a>2. <a target="_blank" rel="noopener" href="https://mta.qq.com/mta/data/device/os">腾讯移动分析</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/tencent_distribution.png?raw=true" alt="tencent_analysis_version_distribution"></p>
+<h3 id="3-友盟全域罗盘"><a href="#3-友盟全域罗盘" class="headerlink" title="3. 友盟全域罗盘"></a>3. <a target="_blank" rel="noopener" href="http://compass.umeng.com/#/equipment?_k=k56hy5">友盟全域罗盘</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/umeng_distribution.png?raw=true" alt="表格中的那条系统 `9.1` 的数据我也不知道是什么鬼,别问我:"></p>
+<p>总结:<br>从以上三份数据统计来看, <code>API 14(Andorid 4.0.0~4.0.2)</code> 都没有被统计, 猜想有两种可能:</p>
+<ul>
+<li>设备数过少(至少低于 <code>0.5%</code> ), 因此没有予以记录;</li>
+<li>市面上没有那种该系统版本的机型,因此无法统计;</li>
+</ul>
+<h3 id="3-Android-各系统版本发布时间"><a href="#3-Android-各系统版本发布时间" class="headerlink" title="3.  Android 各系统版本发布时间"></a>3. <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Android_version_history"> Android 各系统版本发布时间</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/android_release_time.png?raw=true" alt="更多详情请点击上方标题链接"></p>
+<p>从上表可以发现:</p>
+<ul>
+<li> <code>4.0.0</code> 发布 <strong>仅3天</strong> 后就发布了 <code>4.0.1</code> , <strong>一个月</strong> 后发布了 <code>4.0.2</code>版本,均为bug修复版;</li>
+<li> <code>4.0.3</code> 是修复了大量bug和优化后发布的稳定版:<br>基本上可以肯定 <code>4.0.0</code> 是不会有机型发布的,最大的可能也是 <code>4.0.2</code>,这个我们后面继续验证;</li>
+</ul>
+<h2 id="4-手机厂商出机时间"><a href="#4-手机厂商出机时间" class="headerlink" title="4. 手机厂商出机时间"></a>4. 手机厂商出机时间</h2><p>不打算找那么多家的信息了,我们看看当年比较火的 htc/小米 的情况就好:</p>
+<ul>
+<li><p><code>2011.10.18</code>  <code>Android 4.0.0</code> 发布, 而 <a target="_blank" rel="noopener" href="http://tech.sina.com.cn/mobile/models/12693/detail.shtml">小米1s</a>  <code>2012.8</code> 发布时,基于的还是 <code>Android 2.3</code>;</p>
+</li>
+<li><p><code>2012.3</code> 发布的 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Y7t2JU2RP80">HTC One X</a> 基于 <code>Android 4.0.3</code><br>从 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HTC_Sense#Sense_3.6_.282012.29">维基百科</a> 上可以看到 <code>HTC Sence 3.6</code> 是HTC第一版基于 <code>Android 4.0</code> 开发的定制rom,  而从 <a target="_blank" rel="noopener" href="http://www.miui.com/thread-477953-1-1.html">这里</a> 和 <a target="_blank" rel="noopener" href="https://www.engadget.com/2012/03/13/htc-sense-3-6-preview/">这里</a> 可以确认: 其基于的是 <code>4.0.3</code>, 即 HTC定制ROM也没有 <code>4.0.0~4.0.2</code> 的版本;</p>
+</li>
+<li><p>再来看看谷歌自己的情况<br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Android_version_history#Android_8.0_Oreo_.28API_26.29">Android 8.0</a>  于 <code>2017.8</code> 发布, 而谷歌自己的当前旗舰机 <a target="_blank" rel="noopener" href="https://developers.google.com/android/images">pixel 2xl</a> 于 <code>2017.9</code> 才提供 <code>factory image</code> 下载, 其他机型更晚;<br>基于以上情况,可大胆推断: <code>Android 4.0.0~4.0.2</code> 是没有机型发布的, 在短短一个月的时间内, rom厂商可能都来不及获取定制吧;</p>
+</li>
+</ul>
+<h2 id="5-应用市场上的应用支持情况"><a href="#5-应用市场上的应用支持情况" class="headerlink" title="5. 应用市场上的应用支持情况"></a>5. 应用市场上的应用支持情况</h2><p>原本以为不存在该版本的机型,那市面上的APP应该很少会从 <code>API 14</code> 开始支持的, 为了验证想法, 我去下了应用宝的前100应用(P.S. 之所以是应用宝而不是其他市场,是因为它有接口可以直接调用,懒得爬了😝), 脚本地址在 <a target="_blank" rel="noopener" href="https://github.com/lucid-lynxz/PythonDemos/tree/master/qq_market_analysis">这里</a>, 懒得运行的话可以到我 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1dEUmj6L">云盘下载, 密码: icfv</a>; </p>
+<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minsdkversion_statistic.png?raw=true" alt="统计结果"></p>
+<p>(ーー゛)我去, 出乎我意料的是 <code>API 14</code> 竟然占一半, 谁能告诉我为什么?<br>另外 <code>API 11/12</code> 的又是什么鬼? 有手机是 <code>Android 3.0</code> 的吗? 恕我孤陋寡闻了;</p>
+<h2 id="6-小结"><a href="#6-小结" class="headerlink" title="6. 小结"></a>6. 小结</h2><p>😱 感觉自己被自己打脸了,  不过我依然坚持自己的最初看法, 若要求从 <code>4.0</code> 支持,那从 <code>4.0.3</code> 开始即可, 虽然你将 <code>15</code> 降成 <code>14</code> 对代码也没影响, 但感觉是做了多余的事情, 却非要说自己支持更多的机子;</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/24/test-md/" data-id="ckgn2pu1g00026uwd60lje2yy" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/" data-id="ckgn2xkfu0001qxwd2ul4frlz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -100,19 +140,95 @@
 
 
   
-    <article id="post-video播放" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-LifeCycle解析-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/10/24/video%E6%92%AD%E6%94%BE/" class="article-date">
-  <time datetime="2020-10-24T02:16:26.961Z" itemprop="datePublished">2020-10-24</time>
+    <a href="/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/" class="article-date">
+  <time datetime="2020-10-24T02:42:12.000Z" itemprop="datePublished">2020-10-24</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/">LifeCycle解析.md</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="VideoView"><a href="#VideoView" class="headerlink" title="VideoView"></a>VideoView</h1><blockquote>
+        <blockquote>
+<blockquote>
+<p>之前在 <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903838474993677">掘金</a> 发布过, 重新整理在这里</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>之前用过一些android架构组件,但也仅限于api调用,知其然也该知其所以然,所以尝试了解下其源码实现,后续会出livedata,viewmodel的;</p>
+<p>本文基于: macOS 10.13/AS 3.3.1/support-v7 28.0.0/lifecycle 1.1.1</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/lucid-lynxz/BlogSamples/tree/master/LifeCycleDemo">demo项目</a></p>
+<h2 id="使用方法简介"><a href="#使用方法简介" class="headerlink" title="使用方法简介"></a>使用方法简介</h2><p>以前拆分业务逻辑到独立的 <code>presenter</code> 中时,需要重写 <code>Activity</code>/<code>Fragment</code> 各生命周期,然后告知 <code>presenter</code>, 写起来麻烦, 有没有比较简单的方式能把这些”脏活”给处理掉呢?</p>
+<p>我们看看 <code>Lifecycle</code> 架构组件的写法:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MainActiviy.kt</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        <span class="comment">// 注册一个Observer即可,不需要重写各个生命周期方法</span></span><br><span class="line">        lifecycle.addObserver(MainActObserver())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MainActObserver.kt</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActObserver</span> : <span class="type">LifecycleObserver &#123;</span></span></span><br><span class="line">    <span class="meta">@OnLifecycleEvent(Lifecycle.Event.ON_CREATE)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">        Logger.d(<span class="string">&quot;MainActObserver <span class="variable">$this</span> onCreate&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">onResume</span><span class="params">()</span></span> &#123;</span><br><span class="line">        Logger.d(<span class="string">&quot;MainActObserver onResume&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 其他生命周期回调,此处省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到就简单一句 <code>lifecycle.addObserver(MainActObserver())</code> 就完成了 <code>Activity</code> 各生命周期的监听;</p>
+<blockquote>
+<p>P.S. 由于 Android Studio 创建项目时默认导入了 support 的 appcompat-v7 包,已经把 Lifecycle 相关代码导入进来了, 因此我们可以直接使用,不需要额外添加依赖;</p>
+</blockquote>
+<p>以上明显是观察者模式: </p>
+<ol>
+<li><code>Lifecycle</code> 作为被观察对象,持有生命周期状态信息;</li>
+<li><code>Activity/Fragment</code> 是 <code>Lifecycle</code> 的宿主, 抽象为: <code>LifecycleOwner</code>, 会将自身生命周期的变化告知 <code>lifecycle</code>, 后者更新当前状态值(<code>State</code>);</li>
+<li>原 <code>presenter</code> 可当作观察者,记为: <code>LifecycleObserver</code>;</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/3/1694375994eb5ba7?w=912&h=448&f=png&s=39669" alt="lifecycle-observer-mode"></p>
+<h2 id="Lifecycle-类解析"><a href="#Lifecycle-类解析" class="headerlink" title="Lifecycle 类解析"></a>Lifecycle 类解析</h2><p><code>Lifecycle</code> 类需要对各生命周期事件作出反应, 然后保存当前宿主的状态,最后通知各 <code>Observer</code>:<br>我们看下源码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Lifecycle.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Lifecycle</span> </span>&#123;</span><br><span class="line">    <span class="meta">@MainThread</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(<span class="meta">@NonNull</span> LifecycleObserver observer)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@MainThread</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">removeObserver</span><span class="params">(<span class="meta">@NonNull</span> LifecycleObserver observer)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@MainThread</span></span><br><span class="line">    <span class="meta">@NonNull</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> State <span class="title">getCurrentState</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生命周期事件</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">        ON_CREATE, ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生命周期状态</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 以下均已 Activity 为例,介绍各状态值,具体请看源码注释</span></span><br><span class="line">        DESTROYED, <span class="comment">// 在 onDestroy() 前即被标记为 DESTROYED 状态</span></span><br><span class="line">        INITIALIZED, <span class="comment">// 对象创建后但尚未收到 onCreate() 通知之前</span></span><br><span class="line">        CREATED,<span class="comment">// onCreate() 之后, onStop() 之前</span></span><br><span class="line">        STARTED, <span class="comment">// onStart() 之后 ,onPause() 之前</span></span><br><span class="line">        RESUMED; <span class="comment">// onResume() 之后</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAtLeast</span><span class="params">(<span class="meta">@NonNull</span> State state)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> compareTo(state) &gt;= <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现 <code>Lifecycle</code> 只是个抽象类,而且没有对生命周期的变化做出响应的方法, 因此应该有个实现类对生命周期事件作出处理;<br>我们通过 AS 提供 <code>Type Hierarchy</code> 功能(<code>ctrl+h</code>)得知 <code>LifecycleRegistry</code> 类,并得到如下类图:</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/3/169438b857e2addf?w=1640&h=644&f=png&s=120181" alt="lifecycle"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/" data-id="ckgn2xkfp0000qxwd98sy13s9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-VideoView-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/24/VideoView-md/" class="article-date">
+  <time datetime="2020-10-24T02:39:51.000Z" itemprop="datePublished">2020-10-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/24/VideoView-md/">VideoView.md</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
 <p>项目需要做一个简单的播放视频功能demo,后期会换成公司自己的组件,所以就没考虑使用第三方库了,直接上系统的VideoView,在这里记录下操作;<br>顺便吐槽下:一直都听说简书编辑器好用,第一次使用,有点失望,markdown跟效果分栏竟然不能同步滚动,也不支持[TOC],没有个目录实在很不习惯,表情图标也不能插入,代码区块加空行经常都识别不了啊,就不能让我简单滴从笔记中直接粘贴md文本吗… ==!</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://github.com/lucid-lynxz/BlogSamples/tree/master/VideoViewDemo">Demo项目下载</a><br><a target="_blank" rel="noopener" href="https://github.com/lucid-lynxz/ZZVideoPlayer">自己封装了一个播放器</a></p>
@@ -256,129 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/24/video%E6%92%AD%E6%94%BE/" data-id="ckgn2pu1l00036uwd2apm5l1w" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Lifecycle解析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/" class="article-date">
-  <time datetime="2019-03-04T00:38:36.964Z" itemprop="datePublished">2019-03-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="LifeCycle解析"><a href="#LifeCycle解析" class="headerlink" title="LifeCycle解析"></a>LifeCycle解析</h1><blockquote>
-<blockquote>
-<p>之前在 <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903838474993677">掘金</a> 发布过, 重新整理在这里</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>之前用过一些android架构组件,但也仅限于api调用,知其然也该知其所以然,所以尝试了解下其源码实现,后续会出livedata,viewmodel的;</p>
-<p>本文基于: macOS 10.13/AS 3.3.1/support-v7 28.0.0/lifecycle 1.1.1</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/lucid-lynxz/BlogSamples/tree/master/LifeCycleDemo">demo项目</a></p>
-<h2 id="使用方法简介"><a href="#使用方法简介" class="headerlink" title="使用方法简介"></a>使用方法简介</h2><p>以前拆分业务逻辑到独立的 <code>presenter</code> 中时,需要重写 <code>Activity</code>/<code>Fragment</code> 各生命周期,然后告知 <code>presenter</code>, 写起来麻烦, 有没有比较简单的方式能把这些”脏活”给处理掉呢?</p>
-<p>我们看看 <code>Lifecycle</code> 架构组件的写法:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MainActiviy.kt</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        <span class="comment">// 注册一个Observer即可,不需要重写各个生命周期方法</span></span><br><span class="line">        lifecycle.addObserver(MainActObserver())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MainActObserver.kt</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActObserver</span> : <span class="type">LifecycleObserver &#123;</span></span></span><br><span class="line">    <span class="meta">@OnLifecycleEvent(Lifecycle.Event.ON_CREATE)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">        Logger.d(<span class="string">&quot;MainActObserver <span class="variable">$this</span> onCreate&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">onResume</span><span class="params">()</span></span> &#123;</span><br><span class="line">        Logger.d(<span class="string">&quot;MainActObserver onResume&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 其他生命周期回调,此处省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到就简单一句 <code>lifecycle.addObserver(MainActObserver())</code> 就完成了 <code>Activity</code> 各生命周期的监听;</p>
-<blockquote>
-<p>P.S. 由于 Android Studio 创建项目时默认导入了 support 的 appcompat-v7 包,已经把 Lifecycle 相关代码导入进来了, 因此我们可以直接使用,不需要额外添加依赖;</p>
-</blockquote>
-<p>以上明显是观察者模式: </p>
-<ol>
-<li><code>Lifecycle</code> 作为被观察对象,持有生命周期状态信息;</li>
-<li><code>Activity/Fragment</code> 是 <code>Lifecycle</code> 的宿主, 抽象为: <code>LifecycleOwner</code>, 会将自身生命周期的变化告知 <code>lifecycle</code>, 后者更新当前状态值(<code>State</code>);</li>
-<li>原 <code>presenter</code> 可当作观察者,记为: <code>LifecycleObserver</code>;</li>
-</ol>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/3/1694375994eb5ba7?w=912&h=448&f=png&s=39669" alt="lifecycle-observer-mode"></p>
-<h2 id="Lifecycle-类解析"><a href="#Lifecycle-类解析" class="headerlink" title="Lifecycle 类解析"></a>Lifecycle 类解析</h2><p><code>Lifecycle</code> 类需要对各生命周期事件作出反应, 然后保存当前宿主的状态,最后通知各 <code>Observer</code>:<br>我们看下源码:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Lifecycle.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Lifecycle</span> </span>&#123;</span><br><span class="line">    <span class="meta">@MainThread</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(<span class="meta">@NonNull</span> LifecycleObserver observer)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@MainThread</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">removeObserver</span><span class="params">(<span class="meta">@NonNull</span> LifecycleObserver observer)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@MainThread</span></span><br><span class="line">    <span class="meta">@NonNull</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> State <span class="title">getCurrentState</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生命周期事件</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">        ON_CREATE, ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生命周期状态</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 以下均已 Activity 为例,介绍各状态值,具体请看源码注释</span></span><br><span class="line">        DESTROYED, <span class="comment">// 在 onDestroy() 前即被标记为 DESTROYED 状态</span></span><br><span class="line">        INITIALIZED, <span class="comment">// 对象创建后但尚未收到 onCreate() 通知之前</span></span><br><span class="line">        CREATED,<span class="comment">// onCreate() 之后, onStop() 之前</span></span><br><span class="line">        STARTED, <span class="comment">// onStart() 之后 ,onPause() 之前</span></span><br><span class="line">        RESUMED; <span class="comment">// onResume() 之后</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAtLeast</span><span class="params">(<span class="meta">@NonNull</span> State state)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> compareTo(state) &gt;= <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以发现 <code>Lifecycle</code> 只是个抽象类,而且没有对生命周期的变化做出响应的方法, 因此应该有个实现类对生命周期事件作出处理;<br>我们通过 AS 提供 <code>Type Hierarchy</code> 功能(<code>ctrl+h</code>)得知 <code>LifecycleRegistry</code> 类,并得到如下类图:</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/3/169438b857e2addf?w=1640&h=644&f=png&s=120181" alt="lifecycle"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/" data-id="ckgn2pu1800006uwdad8b5j1q" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[牛角尖]我应该从API 15 还是 14 开始支持" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/29/%5B%E7%89%9B%E8%A7%92%E5%B0%96%5D%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/" class="article-date">
-  <time datetime="2017-11-29T07:39:18.210Z" itemprop="datePublished">2017-11-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="牛角尖-我应该从API-15-还是-14-开始支持"><a href="#牛角尖-我应该从API-15-还是-14-开始支持" class="headerlink" title="[牛角尖]我应该从API 15 还是 14 开始支持"></a>[牛角尖]我应该从API 15 还是 14 开始支持</h1><blockquote>
-<p>之前在 <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903542130475022">掘金</a> 发布过, 重新折腾了加 github page, 备份一份在这里</p>
-</blockquote>
-<blockquote>
-<p>之前做了个库, 用户集成的时候问了句: 我们APP是从 <code>Android 4.0.0</code> 开始支持的, 你们能不能把 <code>minSdkVersion</code> 降到 <code>14</code> (库设定是 <code>15</code> , 对应: <code>Android 4.0.3</code> )?  这是问题的由来,闲着没事, 就来稍微钻一下牛角尖,研究看看</p>
-</blockquote>
-<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minSdkVersion15_or_14.png?raw=true" alt="甩个大纲先"></p>
-<h2 id="1-官方推荐的最低版本支持"><a href="#1-官方推荐的最低版本支持" class="headerlink" title="1. 官方推荐的最低版本支持"></a>1. 官方推荐的最低版本支持</h2><p>当初做库的时候, <code>Android Studio</code>(简称 <code>AS</code> )还是推荐的 <code>API 15</code> , 现在(AS 3.0)已经换成了 <code>API 18</code> :</p>
-<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_default.png?raw=true" alt="AS3.0_default.png"></p>
-<p>不过看上面写的数据, <code>API 18</code> 大概只覆盖了 <code>91.4%</code> ,估计应该很多厂商不愿意吧, 漏掉了很多设备, 那不同API版本的覆盖率是多少呢? <code>AS</code> 也给出了自己的统计:</p>
-<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_distribution.png?raw=true" alt="Distribution.png"></p>
-<p>不过这上面的信息使用  <code>API 15</code> 代表  <code>Android 4.0</code> , 没有细分 <code>4.0.0 ~ 4.0.3</code> , 可能谷歌自己觉得没必要了吧, 不过我们依然可以看出一些信息: <br><br>若是从 <code>API 16</code> 开始支持的话,至少能覆盖 <code>99.2%</code> 以上的设备了;</p>
-<h2 id="2-各版本统计详情信息"><a href="#2-各版本统计详情信息" class="headerlink" title="2. 各版本统计详情信息"></a>2. 各版本统计详情信息</h2><p>通常我们设定 <code>minSdkVersion</code> 是看版本分布情况的,  既然 <code>AS</code> 没法提供更细分版本的分布数据,那我们就只能找找其他统计数据了:</p>
-<h3 id="1-谷歌统计数据"><a href="#1-谷歌统计数据" class="headerlink" title="1. 谷歌统计数据"></a>1. <a target="_blank" rel="noopener" href="https://developer.android.com/about/dashboards/index.html">谷歌统计数据</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/google_distribution.png?raw=true" alt="google_analysis_version_distribution"></p>
-<h3 id="2-腾讯移动分析"><a href="#2-腾讯移动分析" class="headerlink" title="2. 腾讯移动分析"></a>2. <a target="_blank" rel="noopener" href="https://mta.qq.com/mta/data/device/os">腾讯移动分析</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/tencent_distribution.png?raw=true" alt="tencent_analysis_version_distribution"></p>
-<h3 id="3-友盟全域罗盘"><a href="#3-友盟全域罗盘" class="headerlink" title="3. 友盟全域罗盘"></a>3. <a target="_blank" rel="noopener" href="http://compass.umeng.com/#/equipment?_k=k56hy5">友盟全域罗盘</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/umeng_distribution.png?raw=true" alt="表格中的那条系统 `9.1` 的数据我也不知道是什么鬼,别问我:"></p>
-<p>总结:<br>从以上三份数据统计来看, <code>API 14(Andorid 4.0.0~4.0.2)</code> 都没有被统计, 猜想有两种可能:</p>
-<ul>
-<li>设备数过少(至少低于 <code>0.5%</code> ), 因此没有予以记录;</li>
-<li>市面上没有那种该系统版本的机型,因此无法统计;</li>
-</ul>
-<h3 id="3-Android-各系统版本发布时间"><a href="#3-Android-各系统版本发布时间" class="headerlink" title="3.  Android 各系统版本发布时间"></a>3. <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Android_version_history"> Android 各系统版本发布时间</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/android_release_time.png?raw=true" alt="更多详情请点击上方标题链接"></p>
-<p>从上表可以发现:</p>
-<ul>
-<li> <code>4.0.0</code> 发布 <strong>仅3天</strong> 后就发布了 <code>4.0.1</code> , <strong>一个月</strong> 后发布了 <code>4.0.2</code>版本,均为bug修复版;</li>
-<li> <code>4.0.3</code> 是修复了大量bug和优化后发布的稳定版:<br>基本上可以肯定 <code>4.0.0</code> 是不会有机型发布的,最大的可能也是 <code>4.0.2</code>,这个我们后面继续验证;</li>
-</ul>
-<h2 id="4-手机厂商出机时间"><a href="#4-手机厂商出机时间" class="headerlink" title="4. 手机厂商出机时间"></a>4. 手机厂商出机时间</h2><p>不打算找那么多家的信息了,我们看看当年比较火的 htc/小米 的情况就好:</p>
-<ul>
-<li><p><code>2011.10.18</code>  <code>Android 4.0.0</code> 发布, 而 <a target="_blank" rel="noopener" href="http://tech.sina.com.cn/mobile/models/12693/detail.shtml">小米1s</a>  <code>2012.8</code> 发布时,基于的还是 <code>Android 2.3</code>;</p>
-</li>
-<li><p><code>2012.3</code> 发布的 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Y7t2JU2RP80">HTC One X</a> 基于 <code>Android 4.0.3</code><br>从 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HTC_Sense#Sense_3.6_.282012.29">维基百科</a> 上可以看到 <code>HTC Sence 3.6</code> 是HTC第一版基于 <code>Android 4.0</code> 开发的定制rom,  而从 <a target="_blank" rel="noopener" href="http://www.miui.com/thread-477953-1-1.html">这里</a> 和 <a target="_blank" rel="noopener" href="https://www.engadget.com/2012/03/13/htc-sense-3-6-preview/">这里</a> 可以确认: 其基于的是 <code>4.0.3</code>, 即 HTC定制ROM也没有 <code>4.0.0~4.0.2</code> 的版本;</p>
-</li>
-<li><p>再来看看谷歌自己的情况<br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Android_version_history#Android_8.0_Oreo_.28API_26.29">Android 8.0</a>  于 <code>2017.8</code> 发布, 而谷歌自己的当前旗舰机 <a target="_blank" rel="noopener" href="https://developers.google.com/android/images">pixel 2xl</a> 于 <code>2017.9</code> 才提供 <code>factory image</code> 下载, 其他机型更晚;<br>基于以上情况,可大胆推断: <code>Android 4.0.0~4.0.2</code> 是没有机型发布的, 在短短一个月的时间内, rom厂商可能都来不及获取定制吧;</p>
-</li>
-</ul>
-<h2 id="5-应用市场上的应用支持情况"><a href="#5-应用市场上的应用支持情况" class="headerlink" title="5. 应用市场上的应用支持情况"></a>5. 应用市场上的应用支持情况</h2><p>原本以为不存在该版本的机型,那市面上的APP应该很少会从 <code>API 14</code> 开始支持的, 为了验证想法, 我去下了应用宝的前100应用(P.S. 之所以是应用宝而不是其他市场,是因为它有接口可以直接调用,懒得爬了😝), 脚本地址在 <a target="_blank" rel="noopener" href="https://github.com/lucid-lynxz/PythonDemos/tree/master/qq_market_analysis">这里</a>, 懒得运行的话可以到我 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1dEUmj6L">云盘下载, 密码: icfv</a>; </p>
-<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minsdkversion_statistic.png?raw=true" alt="统计结果"></p>
-<p>(ーー゛)我去, 出乎我意料的是 <code>API 14</code> 竟然占一半, 谁能告诉我为什么?<br>另外 <code>API 11/12</code> 的又是什么鬼? 有手机是 <code>Android 3.0</code> 的吗? 恕我孤陋寡闻了;</p>
-<h2 id="6-小结"><a href="#6-小结" class="headerlink" title="6. 小结"></a>6. 小结</h2><p>😱 感觉自己被自己打脸了,  不过我依然坚持自己的最初看法, 若要求从 <code>4.0</code> 支持,那从 <code>4.0.3</code> 开始即可, 虽然你将 <code>15</code> 降成 <code>14</code> 对代码也没影响, 但感觉是做了多余的事情, 却非要说自己支持更多的机子;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/29/[%E7%89%9B%E8%A7%92%E5%B0%96]%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/" data-id="ckgn2pu1e00016uwd3pf55tk8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/24/VideoView-md/" data-id="ckgn2xkfy0002qxwd7vpp2g17" class="article-share-link">Share</a>
       
       
     </footer>
@@ -406,7 +400,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
     </div>
   </div>
 
@@ -419,19 +413,15 @@
       <ul>
         
           <li>
-            <a href="/2020/10/24/test-md/">test.md</a>
+            <a href="/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/">应该从API15还是14开始支持.md</a>
           </li>
         
           <li>
-            <a href="/2020/10/24/video%E6%92%AD%E6%94%BE/">(no title)</a>
+            <a href="/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/">LifeCycle解析.md</a>
           </li>
         
           <li>
-            <a href="/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/29/%5B%E7%89%9B%E8%A7%92%E5%B0%96%5D%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/">(no title)</a>
+            <a href="/2020/10/24/VideoView-md/">VideoView.md</a>
           </li>
         
       </ul>

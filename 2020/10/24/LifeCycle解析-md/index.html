@@ -5,19 +5,19 @@
   
 
   
-  <title>Hexo</title>
+  <title>LifeCycle解析.md | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="LifeCycle解析  之前在 掘金 发布过, 重新整理在这里    之前用过一些android架构组件,但也仅限于api调用,知其然也该知其所以然,所以尝试了解下其源码实现,后续会出livedata,viewmodel的; 本文基于: macOS 10.13&#x2F;AS 3.3.1&#x2F;support-v7 28.0.0&#x2F;lifecycle 1.1.1  demo项目 使用方法简介以前拆分业务逻辑到独立">
+  <meta name="description" content="之前在 掘金 发布过, 重新整理在这里    之前用过一些android架构组件,但也仅限于api调用,知其然也该知其所以然,所以尝试了解下其源码实现,后续会出livedata,viewmodel的; 本文基于: macOS 10.13&#x2F;AS 3.3.1&#x2F;support-v7 28.0.0&#x2F;lifecycle 1.1.1  demo项目 使用方法简介以前拆分业务逻辑到独立的 presenter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:title" content="LifeCycle解析.md">
+<meta property="og:url" content="http://example.com/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="LifeCycle解析  之前在 掘金 发布过, 重新整理在这里    之前用过一些android架构组件,但也仅限于api调用,知其然也该知其所以然,所以尝试了解下其源码实现,后续会出livedata,viewmodel的; 本文基于: macOS 10.13&#x2F;AS 3.3.1&#x2F;support-v7 28.0.0&#x2F;lifecycle 1.1.1  demo项目 使用方法简介以前拆分业务逻辑到独立">
+<meta property="og:description" content="之前在 掘金 发布过, 重新整理在这里    之前用过一些android架构组件,但也仅限于api调用,知其然也该知其所以然,所以尝试了解下其源码实现,后续会出livedata,viewmodel的; 本文基于: macOS 10.13&#x2F;AS 3.3.1&#x2F;support-v7 28.0.0&#x2F;lifecycle 1.1.1  demo项目 使用方法简介以前拆分业务逻辑到独立的 presenter">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/3/3/1694375994eb5ba7?w=912&h=448&f=png&s=39669">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/3/3/169438b857e2addf?w=1640&h=644&f=png&s=120181">
-<meta property="article:published_time" content="2019-03-04T00:38:36.964Z">
-<meta property="article:modified_time" content="2020-10-21T11:04:29.047Z">
+<meta property="article:published_time" content="2020-10-24T02:42:12.000Z">
+<meta property="article:modified_time" content="2020-10-24T02:42:28.190Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/3/3/1694375994eb5ba7?w=912&h=448&f=png&s=39669">
@@ -69,19 +69,29 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Lifecycle解析" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LifeCycle解析-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/" class="article-date">
-  <time datetime="2019-03-04T00:38:36.964Z" itemprop="datePublished">2019-03-04</time>
+    <a href="/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/" class="article-date">
+  <time datetime="2020-10-24T02:42:12.000Z" itemprop="datePublished">2020-10-24</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LifeCycle解析.md
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="LifeCycle解析"><a href="#LifeCycle解析" class="headerlink" title="LifeCycle解析"></a>LifeCycle解析</h1><blockquote>
+        <blockquote>
 <blockquote>
 <p>之前在 <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903838474993677">掘金</a> 发布过, 重新整理在这里</p>
 </blockquote>
@@ -115,7 +125,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/" data-id="ckgn2pu1800006uwdad8b5j1q" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/" data-id="ckgn2xkfp0000qxwd98sy13s9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -124,19 +134,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/10/24/video%E6%92%AD%E6%94%BE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          (no title)
+          应该从API15还是14开始支持.md
         
       </div>
     </a>
   
   
-    <a href="/2017/11/29/%5B%E7%89%9B%E8%A7%92%E5%B0%96%5D%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/10/24/VideoView-md/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">VideoView.md</div>
     </a>
   
 </nav>
@@ -160,7 +170,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
     </div>
   </div>
 
@@ -173,19 +183,15 @@
       <ul>
         
           <li>
-            <a href="/2020/10/24/test-md/">test.md</a>
+            <a href="/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/">应该从API15还是14开始支持.md</a>
           </li>
         
           <li>
-            <a href="/2020/10/24/video%E6%92%AD%E6%94%BE/">(no title)</a>
+            <a href="/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/">LifeCycle解析.md</a>
           </li>
         
           <li>
-            <a href="/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/29/%5B%E7%89%9B%E8%A7%92%E5%B0%96%5D%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/">(no title)</a>
+            <a href="/2020/10/24/VideoView-md/">VideoView.md</a>
           </li>
         
       </ul>

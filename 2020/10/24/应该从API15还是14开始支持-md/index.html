@@ -5,14 +5,14 @@
   
 
   
-  <title>Hexo</title>
+  <title>应该从API15还是14开始支持.md | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[牛角尖]我应该从API 15 还是 14 开始支持 之前在 掘金 发布过, 重新折腾了加 github page, 备份一份在这里   之前做了个库, 用户集成的时候问了句: 我们APP是从 Android 4.0.0 开始支持的, 你们能不能把 minSdkVersion 降到 14 (库设定是 15 , 对应: Android 4.0.3 )?  这是问题的由来,闲着没事, 就来稍微钻一下牛">
+  <meta name="description" content="之前在 掘金 发布过, 重新折腾了加 github page, 备份一份在这里   之前做了个库, 用户集成的时候问了句: 我们APP是从 Android 4.0.0 开始支持的, 你们能不能把 minSdkVersion 降到 14 (库设定是 15 , 对应: Android 4.0.3 )?  这是问题的由来,闲着没事, 就来稍微钻一下牛角尖,研究看看   1. 官方推荐的最低版本支持当初">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2017/11/29/[%E7%89%9B%E8%A7%92%E5%B0%96]%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/index.html">
+<meta property="og:title" content="应该从API15还是14开始支持.md">
+<meta property="og:url" content="http://example.com/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="[牛角尖]我应该从API 15 还是 14 开始支持 之前在 掘金 发布过, 重新折腾了加 github page, 备份一份在这里   之前做了个库, 用户集成的时候问了句: 我们APP是从 Android 4.0.0 开始支持的, 你们能不能把 minSdkVersion 降到 14 (库设定是 15 , 对应: Android 4.0.3 )?  这是问题的由来,闲着没事, 就来稍微钻一下牛">
+<meta property="og:description" content="之前在 掘金 发布过, 重新折腾了加 github page, 备份一份在这里   之前做了个库, 用户集成的时候问了句: 我们APP是从 Android 4.0.0 开始支持的, 你们能不能把 minSdkVersion 降到 14 (库设定是 15 , 对应: Android 4.0.3 )?  这是问题的由来,闲着没事, 就来稍微钻一下牛角尖,研究看看   1. 官方推荐的最低版本支持当初">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minSdkVersion15_or_14.png?raw=true">
 <meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_default.png?raw=true">
@@ -22,8 +22,8 @@
 <meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/umeng_distribution.png?raw=true">
 <meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/android_release_time.png?raw=true">
 <meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minsdkversion_statistic.png?raw=true">
-<meta property="article:published_time" content="2017-11-29T07:39:18.210Z">
-<meta property="article:modified_time" content="2020-10-21T10:35:08.149Z">
+<meta property="article:published_time" content="2020-10-24T02:43:07.000Z">
+<meta property="article:modified_time" content="2020-10-24T02:43:20.460Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minSdkVersion15_or_14.png?raw=true">
@@ -75,19 +75,29 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-[牛角尖]我应该从API 15 还是 14 开始支持" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-应该从API15还是14开始支持-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/11/29/%5B%E7%89%9B%E8%A7%92%E5%B0%96%5D%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/" class="article-date">
-  <time datetime="2017-11-29T07:39:18.210Z" itemprop="datePublished">2017-11-29</time>
+    <a href="/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/" class="article-date">
+  <time datetime="2020-10-24T02:43:07.000Z" itemprop="datePublished">2020-10-24</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      应该从API15还是14开始支持.md
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="牛角尖-我应该从API-15-还是-14-开始支持"><a href="#牛角尖-我应该从API-15-还是-14-开始支持" class="headerlink" title="[牛角尖]我应该从API 15 还是 14 开始支持"></a>[牛角尖]我应该从API 15 还是 14 开始支持</h1><blockquote>
+        <blockquote>
 <p>之前在 <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903542130475022">掘金</a> 发布过, 重新折腾了加 github page, 备份一份在这里</p>
 </blockquote>
 <blockquote>
@@ -131,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/29/[%E7%89%9B%E8%A7%92%E5%B0%96]%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/" data-id="ckgn2pu1e00016uwd3pf55tk8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/" data-id="ckgn2xkfu0001qxwd2ul4frlz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -140,15 +150,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
+    <a href="/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LifeCycle解析.md</div>
+    </a>
   
 </nav>
 
@@ -171,7 +177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
     </div>
   </div>
 
@@ -184,19 +190,15 @@
       <ul>
         
           <li>
-            <a href="/2020/10/24/test-md/">test.md</a>
+            <a href="/2020/10/24/%E5%BA%94%E8%AF%A5%E4%BB%8EAPI15%E8%BF%98%E6%98%AF14%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81-md/">应该从API15还是14开始支持.md</a>
           </li>
         
           <li>
-            <a href="/2020/10/24/video%E6%92%AD%E6%94%BE/">(no title)</a>
+            <a href="/2020/10/24/LifeCycle%E8%A7%A3%E6%9E%90-md/">LifeCycle解析.md</a>
           </li>
         
           <li>
-            <a href="/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/29/%5B%E7%89%9B%E8%A7%92%E5%B0%96%5D%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/">(no title)</a>
+            <a href="/2020/10/24/VideoView-md/">VideoView.md</a>
           </li>
         
       </ul>
