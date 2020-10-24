@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[牛角尖]我应该从API 15 还是 14 开始支持 之前在 掘金 发布过, 重新折腾了加 github page, 备份一份在这里   之前做了个库, 用户集成的时候问了句: 我们APP是从 Android 4.0.0 开始支持的, 你们能不能把 minSdkVersion 降到 14 (库设定是 15 , 对应: Android 4.0.3 )?  这是问题的由来,闲着没事, 就来稍微钻一下牛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2017/11/29/[%E7%89%9B%E8%A7%92%E5%B0%96]%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[牛角尖]我应该从API 15 还是 14 开始支持 之前在 掘金 发布过, 重新折腾了加 github page, 备份一份在这里   之前做了个库, 用户集成的时候问了句: 我们APP是从 Android 4.0.0 开始支持的, 你们能不能把 minSdkVersion 降到 14 (库设定是 15 , 对应: Android 4.0.3 )?  这是问题的由来,闲着没事, 就来稍微钻一下牛">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minSdkVersion15_or_14.png?raw=true">
+<meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_default.png?raw=true">
+<meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_distribution.png?raw=true">
+<meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/google_distribution.png?raw=true">
+<meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/tencent_distribution.png?raw=true">
+<meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/umeng_distribution.png?raw=true">
+<meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/android_release_time.png?raw=true">
+<meta property="og:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minsdkversion_statistic.png?raw=true">
+<meta property="article:published_time" content="2017-11-29T07:39:18.210Z">
+<meta property="article:modified_time" content="2020-10-21T10:35:08.149Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minSdkVersion15_or_14.png?raw=true">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[牛角尖]我应该从API 15 还是 14 开始支持" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/29/%5B%E7%89%9B%E8%A7%92%E5%B0%96%5D%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/" class="article-date">
+  <time datetime="2017-11-29T07:39:18.210Z" itemprop="datePublished">2017-11-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="牛角尖-我应该从API-15-还是-14-开始支持"><a href="#牛角尖-我应该从API-15-还是-14-开始支持" class="headerlink" title="[牛角尖]我应该从API 15 还是 14 开始支持"></a>[牛角尖]我应该从API 15 还是 14 开始支持</h1><blockquote>
+<p>之前在 <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903542130475022">掘金</a> 发布过, 重新折腾了加 github page, 备份一份在这里</p>
+</blockquote>
+<blockquote>
+<p>之前做了个库, 用户集成的时候问了句: 我们APP是从 <code>Android 4.0.0</code> 开始支持的, 你们能不能把 <code>minSdkVersion</code> 降到 <code>14</code> (库设定是 <code>15</code> , 对应: <code>Android 4.0.3</code> )?  这是问题的由来,闲着没事, 就来稍微钻一下牛角尖,研究看看</p>
+</blockquote>
+<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minSdkVersion15_or_14.png?raw=true" alt="甩个大纲先"></p>
+<h2 id="1-官方推荐的最低版本支持"><a href="#1-官方推荐的最低版本支持" class="headerlink" title="1. 官方推荐的最低版本支持"></a>1. 官方推荐的最低版本支持</h2><p>当初做库的时候, <code>Android Studio</code>(简称 <code>AS</code> )还是推荐的 <code>API 15</code> , 现在(AS 3.0)已经换成了 <code>API 18</code> :</p>
+<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_default.png?raw=true" alt="AS3.0_default.png"></p>
+<p>不过看上面写的数据, <code>API 18</code> 大概只覆盖了 <code>91.4%</code> ,估计应该很多厂商不愿意吧, 漏掉了很多设备, 那不同API版本的覆盖率是多少呢? <code>AS</code> 也给出了自己的统计:</p>
+<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/as_distribution.png?raw=true" alt="Distribution.png"></p>
+<p>不过这上面的信息使用  <code>API 15</code> 代表  <code>Android 4.0</code> , 没有细分 <code>4.0.0 ~ 4.0.3</code> , 可能谷歌自己觉得没必要了吧, 不过我们依然可以看出一些信息: <br><br>若是从 <code>API 16</code> 开始支持的话,至少能覆盖 <code>99.2%</code> 以上的设备了;</p>
+<h2 id="2-各版本统计详情信息"><a href="#2-各版本统计详情信息" class="headerlink" title="2. 各版本统计详情信息"></a>2. 各版本统计详情信息</h2><p>通常我们设定 <code>minSdkVersion</code> 是看版本分布情况的,  既然 <code>AS</code> 没法提供更细分版本的分布数据,那我们就只能找找其他统计数据了:</p>
+<h3 id="1-谷歌统计数据"><a href="#1-谷歌统计数据" class="headerlink" title="1. 谷歌统计数据"></a>1. <a target="_blank" rel="noopener" href="https://developer.android.com/about/dashboards/index.html">谷歌统计数据</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/google_distribution.png?raw=true" alt="google_analysis_version_distribution"></p>
+<h3 id="2-腾讯移动分析"><a href="#2-腾讯移动分析" class="headerlink" title="2. 腾讯移动分析"></a>2. <a target="_blank" rel="noopener" href="https://mta.qq.com/mta/data/device/os">腾讯移动分析</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/tencent_distribution.png?raw=true" alt="tencent_analysis_version_distribution"></p>
+<h3 id="3-友盟全域罗盘"><a href="#3-友盟全域罗盘" class="headerlink" title="3. 友盟全域罗盘"></a>3. <a target="_blank" rel="noopener" href="http://compass.umeng.com/#/equipment?_k=k56hy5">友盟全域罗盘</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/umeng_distribution.png?raw=true" alt="表格中的那条系统 `9.1` 的数据我也不知道是什么鬼,别问我:"></p>
+<p>总结:<br>从以上三份数据统计来看, <code>API 14(Andorid 4.0.0~4.0.2)</code> 都没有被统计, 猜想有两种可能:</p>
+<ul>
+<li>设备数过少(至少低于 <code>0.5%</code> ), 因此没有予以记录;</li>
+<li>市面上没有那种该系统版本的机型,因此无法统计;</li>
+</ul>
+<h3 id="3-Android-各系统版本发布时间"><a href="#3-Android-各系统版本发布时间" class="headerlink" title="3.  Android 各系统版本发布时间"></a>3. <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Android_version_history"> Android 各系统版本发布时间</a></h3><p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/android_release_time.png?raw=true" alt="更多详情请点击上方标题链接"></p>
+<p>从上表可以发现:</p>
+<ul>
+<li> <code>4.0.0</code> 发布 <strong>仅3天</strong> 后就发布了 <code>4.0.1</code> , <strong>一个月</strong> 后发布了 <code>4.0.2</code>版本,均为bug修复版;</li>
+<li> <code>4.0.3</code> 是修复了大量bug和优化后发布的稳定版:<br>基本上可以肯定 <code>4.0.0</code> 是不会有机型发布的,最大的可能也是 <code>4.0.2</code>,这个我们后面继续验证;</li>
+</ul>
+<h2 id="4-手机厂商出机时间"><a href="#4-手机厂商出机时间" class="headerlink" title="4. 手机厂商出机时间"></a>4. 手机厂商出机时间</h2><p>不打算找那么多家的信息了,我们看看当年比较火的 htc/小米 的情况就好:</p>
+<ul>
+<li><p><code>2011.10.18</code>  <code>Android 4.0.0</code> 发布, 而 <a target="_blank" rel="noopener" href="http://tech.sina.com.cn/mobile/models/12693/detail.shtml">小米1s</a>  <code>2012.8</code> 发布时,基于的还是 <code>Android 2.3</code>;</p>
+</li>
+<li><p><code>2012.3</code> 发布的 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Y7t2JU2RP80">HTC One X</a> 基于 <code>Android 4.0.3</code><br>从 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HTC_Sense#Sense_3.6_.282012.29">维基百科</a> 上可以看到 <code>HTC Sence 3.6</code> 是HTC第一版基于 <code>Android 4.0</code> 开发的定制rom,  而从 <a target="_blank" rel="noopener" href="http://www.miui.com/thread-477953-1-1.html">这里</a> 和 <a target="_blank" rel="noopener" href="https://www.engadget.com/2012/03/13/htc-sense-3-6-preview/">这里</a> 可以确认: 其基于的是 <code>4.0.3</code>, 即 HTC定制ROM也没有 <code>4.0.0~4.0.2</code> 的版本;</p>
+</li>
+<li><p>再来看看谷歌自己的情况<br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Android_version_history#Android_8.0_Oreo_.28API_26.29">Android 8.0</a>  于 <code>2017.8</code> 发布, 而谷歌自己的当前旗舰机 <a target="_blank" rel="noopener" href="https://developers.google.com/android/images">pixel 2xl</a> 于 <code>2017.9</code> 才提供 <code>factory image</code> 下载, 其他机型更晚;<br>基于以上情况,可大胆推断: <code>Android 4.0.0~4.0.2</code> 是没有机型发布的, 在短短一个月的时间内, rom厂商可能都来不及获取定制吧;</p>
+</li>
+</ul>
+<h2 id="5-应用市场上的应用支持情况"><a href="#5-应用市场上的应用支持情况" class="headerlink" title="5. 应用市场上的应用支持情况"></a>5. 应用市场上的应用支持情况</h2><p>原本以为不存在该版本的机型,那市面上的APP应该很少会从 <code>API 14</code> 开始支持的, 为了验证想法, 我去下了应用宝的前100应用(P.S. 之所以是应用宝而不是其他市场,是因为它有接口可以直接调用,懒得爬了😝), 脚本地址在 <a target="_blank" rel="noopener" href="https://github.com/lucid-lynxz/PythonDemos/tree/master/qq_market_analysis">这里</a>, 懒得运行的话可以到我 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1dEUmj6L">云盘下载, 密码: icfv</a>; </p>
+<p><img src="https://github.com/lucid-lynxz/markdownPhotos/blob/master/android_minsdkversion_research/minsdkversion_statistic.png?raw=true" alt="统计结果"></p>
+<p>(ーー゛)我去, 出乎我意料的是 <code>API 14</code> 竟然占一半, 谁能告诉我为什么?<br>另外 <code>API 11/12</code> 的又是什么鬼? 有手机是 <code>Android 3.0</code> 的吗? 恕我孤陋寡闻了;</p>
+<h2 id="6-小结"><a href="#6-小结" class="headerlink" title="6. 小结"></a>6. 小结</h2><p>😱 感觉自己被自己打脸了,  不过我依然坚持自己的最初看法, 若要求从 <code>4.0</code> 支持,那从 <code>4.0.3</code> 开始即可, 虽然你将 <code>15</code> 降成 <code>14</code> 对代码也没影响, 但感觉是做了多余的事情, 却非要说自己支持更多的机子;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/11/29/[%E7%89%9B%E8%A7%92%E5%B0%96]%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/" data-id="ckgn0svsi0001ozwd89le5akk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/04/Lifecycle%E8%A7%A3%E6%9E%90/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/29/%5B%E7%89%9B%E8%A7%92%E5%B0%96%5D%E6%88%91%E5%BA%94%E8%AF%A5%E4%BB%8EAPI%2015%20%E8%BF%98%E6%98%AF%2014%20%E5%BC%80%E5%A7%8B%E6%94%AF%E6%8C%81/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
